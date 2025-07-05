@@ -1,12 +1,12 @@
 public interface IProduct {
     String getName();
-    void setName();
+    void setName(String newName);
     double getPrice();
-    void setPrice();
+    void setPrice(double newPrice);
     int getQuantity();
     void setQuantity(int newQuantity);
-    void addQuantity(int addedQuantity);
-    void subtractQuantity(int subtractedQuantity);
-    boolean isSufficientQuantity(int requiredQuantity);
+    void addQuantity(int quantityToAdd);
+    void subtractQuantity(int quantityToSubtract);
+    boolean hasSufficientQuantity(int requiredQuantity);
 }
 
