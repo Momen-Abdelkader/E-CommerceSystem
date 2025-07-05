@@ -6,7 +6,10 @@ public class ExpirableProduct extends AbstractProduct implements IExpirable {
 
     public ExpirableProduct(String name, double price, int quantity, Date expirationDate) {
         super(name, price, quantity);
-        this.expirationDate = expirationDate; // TODO: add validation for date
+        if (expirationDate == null) {
+            throw new IllegalStateException("Expiration date cannot be null");
+        }
+        this.expirationDate = expirationDate;
     }
 
     @Override

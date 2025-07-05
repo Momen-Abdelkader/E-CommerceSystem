@@ -7,7 +7,16 @@ public class ExpirableShippableProduct extends AbstractProduct implements IShipp
 
     public ExpirableShippableProduct(String name, double price, int quantity, Date expirationDate, double weight) {
         super(name, price, quantity);
-        this.expirationDate = expirationDate; // TODO: validation
+        if (expirationDate == null) {
+            throw new IllegalArgumentException("Expiration date cannot be null");
+        }
+
+        this.expirationDate = expirationDate;
+
+        if (weight <= 0) {
+            throw new IllegalArgumentException("Weight must be greater than 0");
+        }
+
         this.weight = weight; // TODO: validation
     }
 

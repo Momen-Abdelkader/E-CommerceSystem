@@ -6,14 +6,14 @@ public class Cart {
 
     public void addItem(IProduct product, int quantity) {
         if (!product.hasSufficientQuantity(quantity)) {
-            throw new RuntimeException(product.getName() + " doesn't have sufficient quantity in stock");
+            throw new IllegalStateException(product.getName() + " doesn't have sufficient quantity in stock");
         }
 
         CartItem existingItem = findItemByProduct(product);
         if (existingItem != null) {
             int newQuantity = existingItem.getRequestedQuantity() + quantity;
             if (!product.hasSufficientQuantity(newQuantity)) {
-                throw new RuntimeException(product.getName() + " doesn't have sufficient quantity in stock");
+                throw new IllegalStateException(product.getName() + " doesn't have sufficient quantity in stock");
             }
 
             existingItem.setRequestedQuantity(newQuantity);
@@ -26,7 +26,7 @@ public class Cart {
     public void removeItem(IProduct product) {
         CartItem existingItem = findItemByProduct(product);
         if (existingItem == null) {
-            throw new RuntimeException(product.getName() + " is not in the cart");
+            throw new IllegalStateException(product.getName() + " is not in the cart");
         }
         items.remove(existingItem);
     }

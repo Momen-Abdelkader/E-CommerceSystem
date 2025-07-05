@@ -4,9 +4,9 @@ public abstract class AbstractProduct implements IProduct {
     protected int quantity;
 
     public AbstractProduct(String name, double price, int quantity) {
-        this.name = name;
-        this.price = price;
-        this.quantity = quantity;
+        setName(name);
+        setPrice(price);
+        setQuantity(quantity);
     }
 
     @Override
@@ -16,6 +16,10 @@ public abstract class AbstractProduct implements IProduct {
 
     @Override
     public void setName(String newName) {
+        if (newName == null) {
+            throw new IllegalArgumentException("Error modifying " + getName() + ": Name cannot be null");
+        }
+
         name = newName;
     }
 
@@ -26,6 +30,10 @@ public abstract class AbstractProduct implements IProduct {
 
     @Override
     public void setPrice(double newPrice) {
+        if (newPrice < 0) {
+            throw new IllegalStateException("Error modifying " + getName() + ": Price must be greater than 0");
+        }
+
         price = newPrice;
     }
 
@@ -36,6 +44,10 @@ public abstract class AbstractProduct implements IProduct {
 
     @Override
     public void setQuantity(int newQuantity) {
+        if (newQuantity < 0) {
+            throw new IllegalStateException("Error modifying " + getName() + ": Quantity must be greater than 0");
+        }
+
         quantity = newQuantity;
     }
 
@@ -47,7 +59,7 @@ public abstract class AbstractProduct implements IProduct {
     @Override
     public void subtractQuantity(int quantityToSubtract) {
         if (quantityToSubtract > quantity) {
-            throw new RuntimeException(getName() + " doesn't have sufficient quantity in stock");
+            throw new IllegalStateException(getName() + " doesn't have sufficient quantity in stock");
         }
 
         quantity -= quantityToSubtract;

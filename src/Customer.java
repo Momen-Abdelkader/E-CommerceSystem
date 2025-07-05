@@ -16,6 +16,10 @@ public class Customer {
     }
 
     public void deductBalance(double amount) {
+        if (amount > balance) {
+            throw new IllegalStateException("Insufficient balance. Required: " + amount + ", Available: " + balance);
+        }
+
         balance -= amount;
     }
 
