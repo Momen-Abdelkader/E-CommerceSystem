@@ -29,7 +29,8 @@ public class ShippingService {
             System.out.println(count + "x " + name + " " + count * weight + "kg");
         }
 
-        System.out.println("Total package weight " + totalWeight + "kg");
+        double roundedWeight = Math.round(totalWeight * 100.0) / 100.0;
+        System.out.println("Total package weight " + roundedWeight + "kg");
     }
 
     public double getShippingFee() {
