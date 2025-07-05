@@ -47,7 +47,7 @@ public abstract class AbstractProduct implements IProduct {
     @Override
     public void subtractQuantity(int quantityToSubtract) {
         if (quantityToSubtract > quantity) {
-           throw new RuntimeException("Can't subtract more than the current quantity");
+            throw new RuntimeException(getName() + " doesn't have sufficient quantity in stock");
         }
 
         quantity -= quantityToSubtract;

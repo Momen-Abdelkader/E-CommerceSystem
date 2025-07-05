@@ -11,15 +11,17 @@ public class Cart {
 
         CartItem existingItem = findItemByProduct(product);
         if (existingItem != null) {
-            int newQuantity = existingItem.getQuantity() + quantity;
+            int newQuantity = existingItem.getRequestedQuantity() + quantity;
             if (!product.hasSufficientQuantity(newQuantity)) {
                 throw new RuntimeException(product.getName() + " doesn't have sufficient quantity in stock");
             }
 
-            existingItem.setQuantity(newQuantity);
+            existingItem.setRequestedQuantity(newQuantity);
+            product.subtractQuantity(quantity);
         }
         else {
             items.add(new CartItem(product, quantity));
+            product.subtractQuantity(quantity);
         }
     }
 
