@@ -5,7 +5,7 @@ public class ExpirableProduct extends AbstractProduct implements IExpirable {
 
     public ExpirableProduct(String name, double price, int quantity, Date expirationDate) {
         super(name, price, quantity);
-        this.expirationDate = expirationDate;
+        this.expirationDate = expirationDate; // TODO: add validation for date
     }
 
     @Override
