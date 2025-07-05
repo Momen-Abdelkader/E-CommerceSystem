@@ -17,11 +17,9 @@ public class Cart {
             }
 
             existingItem.setRequestedQuantity(newQuantity);
-            product.subtractQuantity(quantity);
         }
         else {
             items.add(new CartItem(product, quantity));
-            product.subtractQuantity(quantity);
         }
     }
 
